@@ -12,10 +12,19 @@ function randHole(HOLES) {
   const HOLE = HOLES[IDX];
 
   if (lastHole === HOLE) {
-    console.log('restart');
     return randHole(HOLES);
   }
 
   lastHole = HOLE
   return HOLE;
+}
+
+function moleSpawn() {
+  const TIME = randTime(300, 900);
+  const HOLE = randHole(HOLES);
+  HOLE.classList.add('up');
+  setTimeout(() => {
+    HOLE.classList.remove('up');
+    moleSpawn();
+  }, TIME);
 }

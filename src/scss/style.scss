@@ -27,7 +27,6 @@ body {
     flex-wrap: wrap;
     margin: 0 auto;
 
-
     .hole {
       flex: 1 0 33.33%;
       overflow: hidden;
@@ -41,7 +40,7 @@ body {
         width: 100%;
         height: 70px;
         position: absolute;
-        top: 130px;
+        top: 150px;
         z-index: 2;
         bottom: -30px;
       }
@@ -49,11 +48,14 @@ body {
         background: url("../src/svg/mole.svg") bottom center no-repeat;
         background-size: 60%;
         position: absolute;
-        top: 0;
+        top: 100%;
         width: 100%;
         height: 100%;
         transition: all 0.4s;
       }
+    }
+    .hole.up .mole {
+      top: 0;
     }
   }
 }
