@@ -1,7 +1,9 @@
 const HOLES = document.querySelectorAll('.hole');
 const MOLES = document.querySelectorAll('.mole');
-const SCORE = document.querySelectorAll('.score');
+const SCORE = document.querySelector('.score');
 let lastHole;
+let timeUp = true;
+let score = 0;
 
 function randTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -20,11 +22,29 @@ function randHole(HOLES) {
 }
 
 function moleSpawn() {
-  const TIME = randTime(300, 900);
+  const TIME = randTime(500, 1000);
   const HOLE = randHole(HOLES);
   HOLE.classList.add('up');
+
   setTimeout(() => {
     HOLE.classList.remove('up');
-    moleSpawn();
+    if (timeUp) moleSpawn()
   }, TIME);
 }
+
+function startGame() {
+  SCORE.textContent = 0;
+  timeUp = true;
+  score = 0;
+  moleSpawn();
+  setTimeout(() => timeUp = false, 10000);
+}
+
+function hit(e) {
+  if (!e.isTrusted) return;
+  score++;
+  this.parentNode.classList.remove('up');
+  SCORE.textContent = score;
+}
+
+MOLES.forEach(mole => mole.addEventListener('click', hit));
