@@ -1,12 +1,13 @@
 const HOLES = document.querySelectorAll('.hole');
 const MOLES = document.querySelectorAll('.mole');
 const SCORE = document.querySelector('.score');
+const START = document.querySelector('.start');
 let lastHole;
 let timeUp = true;
 let score;
 let oldScore = localStorage.getItem('score');
+let difficult;
 SCORE.textContent = oldScore;
-
 
 function randTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -24,23 +25,30 @@ function randHole(HOLES) {
   return HOLE;
 }
 
-
-
 function moleSpawn() {
   let speedMin = 1000;
   let speedMax = 2000;
-  if (score > 1) {
-    speedMin = Math.round(1250 / (score / 1.5));
-    speedMax = Math.round(2500 / (score / 1.5));
+  if (difficult === 0) {
+    if (score > 1) {
+      speedMin = Math.round(speedMin / (score / 3));
+      speedMax = Math.round(speedMax / (score / 3));
+    }
+  } else if (difficult === 1) {
+    speedMin = 1500;
+    speedMax = 2100;
+  } else if (difficult === 2) {
+    speedMin = 800;
+    speedMax = 1000;
+  } else if (difficult === 3) {
+    speedMin = 400;
+    speedMax = 600;
   }
 
   const TIME = randTime(speedMin, speedMax);
   const HOLE = randHole(HOLES);
   HOLE.classList.add('up');
 
-
   setTimeout(() => {
-
     HOLE.classList.remove('up');
     if (timeUp) moleSpawn()
   }, TIME);
@@ -51,7 +59,7 @@ function startGame() {
   timeUp = true;
   score = 0;
   moleSpawn();
-  setTimeout(() => timeUp = false, 20000);
+  setTimeout(() => timeUp = false, 15000);
 }
 
 function hit(e) {
@@ -62,4 +70,5 @@ function hit(e) {
   window.localStorage.score = score
 }
 
+START.addEventListener('click', () => startGame());
 MOLES.forEach(mole => mole.addEventListener('click', hit));

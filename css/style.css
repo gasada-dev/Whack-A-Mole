@@ -369,6 +369,10 @@ body h1 .score {
   border-radius: 1rem;
 }
 
+body .start {
+  padding-top: 1rem;
+}
+
 body .game {
   padding-top: 5rem;
   width: 640px;

@@ -12,10 +12,12 @@
 <body>
 
   <h1>Whack A Mole <span class="score">0</span></h1>
-  <button onClick="startGame()" id="startGame">Start classic</button>
-  <button onClick="startEasy()" id="startEasy">Start easy</button>
-  <button onClick="startNormal()" id="startNormal">Start normal</button>
-  <button onClick="startHard()" id="startHard">Start hard</button>
+  <div class="start">
+    <button onClick="difficult = 0">Start classic</button>
+    <button onClick="difficult = 1">Start easy</button>
+    <button onClick="difficult = 2">Start normal</button>
+    <button onClick="difficult = 3">Start hard</button>
+  </div>
 
 
   <div class="game">
