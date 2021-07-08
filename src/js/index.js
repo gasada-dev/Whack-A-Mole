@@ -3,7 +3,9 @@ const MOLES = document.querySelectorAll('.mole');
 const SCORE = document.querySelector('.score');
 let lastHole;
 let timeUp = true;
-let score = 0;
+let score;
+SCORE.textContent = localStorage.getItem('score');
+
 
 function randTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -45,6 +47,7 @@ function hit(e) {
   score++;
   this.parentNode.classList.remove('up');
   SCORE.textContent = score;
+  window.localStorage.score = score;
 }
 
 MOLES.forEach(mole => mole.addEventListener('click', hit));
