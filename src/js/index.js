@@ -21,7 +21,7 @@ function randHole(HOLES) {
     return randHole(HOLES);
   }
 
-  lastHole = HOLE
+  lastHole = HOLE;
   return HOLE;
 }
 
@@ -50,7 +50,7 @@ function moleSpawn() {
 
   setTimeout(() => {
     HOLE.classList.remove('up');
-    if (timeUp) moleSpawn()
+    if (timeUp) moleSpawn();
   }, TIME);
 }
 
@@ -67,7 +67,7 @@ function hit(e) {
   score++;
   this.parentNode.classList.remove('up');
   SCORE.textContent = score;
-  window.localStorage.score = score
+  window.localStorage.score = score;
 }
 
 START.addEventListener('click', () => startGame());
