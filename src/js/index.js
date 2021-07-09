@@ -2,11 +2,13 @@ const HOLES = document.querySelectorAll('.hole');
 const MOLES = document.querySelectorAll('.mole');
 const SCORE = document.querySelector('.score');
 const START = document.querySelector('.start');
+
 let lastHole;
 let timeUp = true;
 let score;
 let oldScore = localStorage.getItem('score');
 let difficult;
+
 SCORE.textContent = oldScore;
 
 function randTime(min, max) {
@@ -24,6 +26,9 @@ function randHole(HOLES) {
   lastHole = HOLE;
   return HOLE;
 }
+
+привет 
+ПРИВЕТ
 
 function moleSpawn() {
   let speedMin = 1000;
